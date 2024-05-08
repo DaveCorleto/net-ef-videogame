@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,15 +19,19 @@ namespace net_ef_videogame
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public string EstablishedYear { get; set; }
+        public int EstablishedYear { get; set; } 
 
-        // Indico che per ogni SoftwareHouse ci sono molti
-        //videogiochi: questo fa capire al sistema la relazione di 1:N tra Videogiochi e 
-        //SoftwareHouse
+        public List<Videogame> Videogames { get; set; }
 
-        public ICollection<Videogame> Videogames { get; set; }
-
-
+        public SoftwareHouse()
+        {
+            Name = string.Empty;
+            Description = string.Empty;
+            EstablishedYear = 0;  
+            Videogames = new List<Videogame>();
+        }
+        
     }
+
 
 }
